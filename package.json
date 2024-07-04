@@ -1,0 +1,14 @@
+{
+  "name": "tiktok_techjam",
+  "version": "1.0.0",
+  "description": "tech-jam",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node": "^20.15.0"
+  }
+}
