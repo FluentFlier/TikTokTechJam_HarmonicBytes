@@ -12,8 +12,8 @@ Audience Insights: Provide detailed analytics and insights about audience demogr
 Content Performance Tracking: Monitor and analyze the performance of posted content to continuously improve strategies.
 Collaboration Opportunities: Identify potential collaboration opportunities with influencers and other artists to expand reach.
 Real-time Recommendations: Offer real-time content creation and posting recommendations based on current trends and audience activity.
-Development Tools Used
 
+Development Tools Used
 Python: Core development language used for backend processing and AI model integration.
 JavaScript, CSS, HTML: Used for building the frontend interface and user interactions.
 Google Cloud Platform (GCP): For hosting the application and integrating various cloud services.
