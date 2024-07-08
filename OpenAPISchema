@@ -1,0 +1,172 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "ViralArtistsDB API",
+    "description": "API to access information about viral artists and their strategies to increase discoverability on TikTok.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "support@viralartistsdb.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.viralartistsdb.com/v1"
+    }
+  ],
+  "paths": {
+    "/artists/similar": {
+      "get": {
+        "summary": "Get similar artists",
+        "description": "Retrieve a list of artists similar to the specified artist.",
+        "operationId": "getSimilarArtists",
+        "parameters": [
+          {
+            "name": "artistName",
+            "in": "query",
+            "description": "Name of the artist to find similar artists for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of similar artists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Artist"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Artist not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Artist": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Artist 1"
+          },
+          "genre": {
+            "type": "string",
+            "example": "Pop"
+          },
+          "age": {
+            "type": "integer",
+            "example": 21
+          },
+          "gender": {
+            "type": "string",
+            "example": "Female"
+          },
+          "location": {
+            "type": "string",
+            "example": "USA"
+          },
+          "followers": {
+            "type": "integer",
+            "example": 2000000
+          },
+          "keyStrategy": {
+            "type": "string",
+            "example": "Dance challenges, trends"
+          },
+          "listenerAgeDistribution": {
+            "type": "object",
+            "properties": {
+              "13-17": {
+                "type": "integer",
+                "example": 40
+              },
+              "18-24": {
+                "type": "integer",
+                "example": 35
+              },
+              "25-34": {
+                "type": "integer",
+                "example": 15
+              },
+              "35+": {
+                "type": "integer",
+                "example": 10
+              }
+            }
+          },
+          "genderRatio": {
+            "type": "object",
+            "properties": {
+              "M": {
+                "type": "integer",
+                "example": 30
+              },
+              "F": {
+                "type": "integer",
+                "example": 65
+              },
+              "NB": {
+                "type": "integer",
+                "example": 5
+              }
+            }
+          },
+          "topLocations": {
+            "type": "object",
+            "properties": {
+              "USA": {
+                "type": "integer",
+                "example": 50
+              },
+              "UK": {
+                "type": "integer",
+                "example": 15
+              },
+              "Canada": {
+                "type": "integer",
+                "example": 10
+              },
+              "Australia": {
+                "type": "integer",
+                "example": 5
+              },
+              "Others": {
+                "type": "integer",
+                "example": 20
+              }
+            }
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}
