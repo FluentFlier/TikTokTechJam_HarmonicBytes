@@ -1,0 +1,56 @@
+import functions_framework
+from flask import jsonify, request
+
+# Mock dataset based on the provided PDF data
+artists_data = [
+    {
+        "name": "Artist 1",
+        "genre": "Pop",
+        "age": 21,
+        "gender": "Female",
+        "location": "USA",
+        "followers": 2000000,
+        "keyStrategy": "Dance challenges, trends",
+        "listenerAgeDistribution": {"13-17": 40, "18-24": 35, "25-34": 15, "35+": 10},
+        "genderRatio": {"M": 30, "F": 65, "NB": 5},
+        "topLocations": {"USA": 50, "UK": 15, "Canada": 10, "Australia": 5, "Others": 20}
+    },
+    # Add all other artists here in the same format pr access the databse in the future directly.
+]
+
+def find_similar_artists(name):
+    # Placeholder for a similarity finding function
+    return [artist for artist in artists_data if artist['name'] != name]
+
+@functions_framework.http
+def get_similar_artists(request):
+    """HTTP Cloud Function to get similar artists.
+    Args:
+        request (flask.Request): The request object.
+    Returns:
+        A JSON response with similar artists.
+    """
+    request_json = request.get_json(silent=True)
+    request_args = request.args
+
+    if request_json and 'artistName' in request_json:
+        artist_name = request_json['artistName']
+    elif request_args and 'artistName' in request_args:
+        artist_name = request_args['artistName']
+    else:
+        return jsonify({"error": "artistName parameter is required"}), 400
+
+    similar_artists = find_similar_artists(artist_name)
+    return jsonify(similar_artists)
+
+# Sample use of the function locally
+if __name__ == "__main__":
+    from flask import Flask, request
+
+    app = Flask(__name__)
+
+    @app.route("/artists/similar", methods=["GET"])
+    def similar_artists_endpoint():
+        return get_similar_artists(request)
+
+    app.run(debug=True, host="0.0.0.0", port=8080)
