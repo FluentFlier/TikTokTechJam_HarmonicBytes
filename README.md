@@ -56,7 +56,6 @@ Problem Statement
 The primary problem addressed by Harmonic Bytes is the challenge musicians face in gaining visibility and engagement on TikTok. By analyzing audience metrics and leveraging trending topics, the project aims to provide personalized content strategies that enhance an artist's reach and interaction on the platform.
 
 
-
 Instructions to Execute the Project
 
 Setup Google Cloud Project
@@ -69,14 +68,22 @@ Upload the exported agent ZIP file to Google Cloud Storage.
 Import the agent into Vertex AI.
 Run the Application
 
-Use the following command to start the Flask application locally:
-Copy code
-python app.py
-Access the application via http://localhost:5000.
-Access the Frontend
+Install Node.js and npm:
+Ensure you have Node.js and npm installed. You can download and install them from Node.js.
 
-Ensure your frontend files (JavaScript, CSS, HTML) are properly linked and hosted.
-Open the frontend in a web browser and interact with the application.
-Generate and View Reports
+Navigate to the Project Directory:
 
-Use the provided endpoints to generate and download PDF reports summarizing content strategies and performance metrics.
+Open your terminal and navigate to the root directory of your project.
+cd path/to/your/project
+
+Install Dependencies:
+Run the following command to install all necessary dependencies.
+npm install
+
+Start the Development Server:
+Once the dependencies are installed, start the development server.
+npm start
+
+Open the Application:
+Open your browser and go to http://localhost:3000 to view the application.
+
