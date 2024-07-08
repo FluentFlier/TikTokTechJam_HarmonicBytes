@@ -1,0 +1,193 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Content Strategies Database API",
+    "description": "API for accessing and managing content strategies for increasing discoverability on TikTok for musicians.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.contentstrategiesdb.com/v1"
+    }
+  ],
+  "paths": {
+    "/strategies": {
+      "get": {
+        "summary": "Get all content strategies",
+        "description": "Retrieve a list of all content strategies.",
+        "operationId": "getContentStrategies",
+        "responses": {
+          "200": {
+            "description": "A list of content strategies.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ContentStrategy"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new content strategy",
+        "description": "Add a new content strategy to the database.",
+        "operationId": "createContentStrategy",
+        "requestBody": {
+          "description": "Content strategy to add",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContentStrategy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Content strategy created successfully."
+          },
+          "400": {
+            "description": "Invalid input."
+          }
+        }
+      }
+    },
+    "/strategies/{strategyId}": {
+      "get": {
+        "summary": "Get a content strategy by ID",
+        "description": "Retrieve a specific content strategy by its ID.",
+        "operationId": "getContentStrategyById",
+        "parameters": [
+          {
+            "name": "strategyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the content strategy to retrieve."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A content strategy.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContentStrategy"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Content strategy not found."
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a content strategy by ID",
+        "description": "Update the details of an existing content strategy by its ID.",
+        "operationId": "updateContentStrategyById",
+        "parameters": [
+          {
+            "name": "strategyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the content strategy to update."
+          }
+        ],
+        "requestBody": {
+          "description": "Updated content strategy details",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContentStrategy"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Content strategy updated successfully."
+          },
+          "400": {
+            "description": "Invalid input."
+          },
+          "404": {
+            "description": "Content strategy not found."
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a content strategy by ID",
+        "description": "Remove a content strategy from the database by its ID.",
+        "operationId": "deleteContentStrategyById",
+        "parameters": [
+          {
+            "name": "strategyId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of the content strategy to delete."
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Content strategy deleted successfully."
+          },
+          "404": {
+            "description": "Content strategy not found."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ContentStrategy": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "contentType": {
+            "type": "string",
+            "example": "Music Video Teaser"
+          },
+          "description": {
+            "type": "string",
+            "example": "Short teaser of an upcoming music video"
+          },
+          "goal": {
+            "type": "string",
+            "example": "Build anticipation for the release"
+          },
+          "keyMetrics": {
+            "type": "string",
+            "example": "Views, likes, shares, comments"
+          },
+          "set": {
+            "type": "string",
+            "example": "Set 1"
+          },
+          "week": {
+            "type": "string",
+            "example": "Week 1"
+          }
+        }
+      }
+    }
+  }
+}
